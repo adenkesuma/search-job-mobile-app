@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   }),
   location: {
     fontSize: SIZES.medium - 2,
+    marginTop: 4,
     fontFamily: FONT.regular,
     color: "#B3AEC6",
   },
