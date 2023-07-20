@@ -1,9 +1,21 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./popularjobcard.style";
 
-const PopularJobCard = () => {
+const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
   return (
-    <Text>Popular job card</Text>
+    <TouchableOpacity
+      style={styles.container(selectedJob, item)}
+      onPress={() => handleCardPress(item)}
+    >
+      <TouchableOpacity>
+        <Image 
+          source={{ url: item.employer_logo }}
+          resizeMode="contain"
+          style={styles.logoImage}
+        />
+      </TouchableOpacity>
+      <Text>{item.employer_name}</Text>
+    </TouchableOpacity>
   );
 };
 

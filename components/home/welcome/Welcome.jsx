@@ -15,7 +15,7 @@ import styles from "./welcome.style";
 import { icons, SIZES } from "../../../constants";
 
 // constant job types
-const jobTypes = ["Full-time", "Part-time", "Contractor"];
+const jobTypes = ["Full-time", "Part-time", "Contractor", "Freelance"];
 
 const Welcome = () => {
   const router = useRouter();
@@ -57,11 +57,11 @@ const Welcome = () => {
           data={jobTypes}
           renderItem={({ item }) => (
             <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
-              onPress={() => {
-                setActiveJobType(item);
-                router.push(`/search/${item}`)
-              }}
+            style={styles.tab(activeJobType, item)}
+            onPress={() => {
+              setActiveJobType(item);
+              router.push(`/search/${item}`)
+            }}
             >
               <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
             </TouchableOpacity>
@@ -69,6 +69,7 @@ const Welcome = () => {
           keyExtractor={item => item}
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </View>
