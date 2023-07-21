@@ -1,15 +1,43 @@
+// import module package
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
+
+// import file
+import { SIZES } from "../../../constants";
 import styles from "./tabs.style";
 
-function TabButton() {
+const TabButton = ({ name, activeTab, onHandleSearchType }) => {
   return (
-    <Text>Tab Button</Text>
+    <TouchableOpacity
+      style={styles.btn(name, activeTab)}
+      onPress={onHandleSearchType}
+    >
+      <Text style={styles.btnText(name, activeTab)}>{name}</Text>
+    </TouchableOpacity>
   );
 };
 
-const Tabs = () => {
+const Tabs = ({
+  tabs,
+  activeTab,
+  setActiveTab
+}) => {
   return (
-    <Text>Tabs</Text> 
+    <View>
+      <FlatList 
+        data={tabs}
+        renderItem={({ item }) => (
+          <TabButton 
+            name={item}
+            activeTab={activeTab}
+            onHandleSearchType={() => setActiveTab(item)}
+          />
+        )}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={item => item}
+        contentContainerStyle={{ columnGap: SIZES.small / 2 }}
+      />
+    </View>
   );
 };
 
